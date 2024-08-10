@@ -23,7 +23,7 @@ public class hooks {
         options.addArguments("--start-fullscreen");
         System.setProperty("webdriver.chrome.driver", "D:\\Aplikasi Donwload\\chromedriver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver(options);
-        driver.get("https://www.saucedemo.com/");
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     }
 
     @After
