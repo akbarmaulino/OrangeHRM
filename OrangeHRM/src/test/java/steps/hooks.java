@@ -21,6 +21,15 @@ public class hooks {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--start-fullscreen");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-infobars");
+        options.addArguments("--disable-extensions");
+        options.addArguments("--disable-popup-blocking");
+        options.addArguments("--disable-software-rasterizer");
+        options.addArguments("--disable-browser-side-navigation");
+        options.addArguments("--disable-features=VizDisplayCompositor");
         System.setProperty("webdriver.chrome.driver", "D:\\Aplikasi Donwload\\chromedriver\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         driver = new ChromeDriver(options);
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");

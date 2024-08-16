@@ -3,12 +3,8 @@ package steps;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPages;
-
-
-import static org.junit.Assert.assertTrue;
 
 public class Login{
     private WebDriver driver;

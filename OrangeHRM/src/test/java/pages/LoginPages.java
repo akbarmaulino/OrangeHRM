@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,10 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import java.time.Duration;
-
-
 
 public class LoginPages {
     WebDriver driver;
@@ -22,7 +18,6 @@ public class LoginPages {
         driver = webDrivers;
         PageFactory.initElements(driver,this);
     }
-
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input")
     private WebElement username;
@@ -96,16 +91,6 @@ public class LoginPages {
     public void errormessageisdisplayed(){
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(errormessage));
-    }
-
-    public void errormessagepassword(){
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(errormessagepassword));
-    }
-
-    public void errormessageusername(){
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(errormessageusername));
     }
 
     public void checkErrorMessages() {
