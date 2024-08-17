@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class AdminPages {
     WebDriver driver;
@@ -39,8 +40,14 @@ public class AdminPages {
     @FindAll(@FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div/div/div[2]"))
     private List<WebElement> ListJobTitles;
 
+    @FindAll(@FindBy(xpath = "//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div[1]/div/div[1]/div/div/label/span/i"))
+    private List<WebElement> CheckboxJobTitles;
+
     @FindBy(xpath = "//*[@id=\"app\"]/div[3]/div/div/div/div[3]/button[2]")
     private WebElement confrimDeleteJobTitles;
+
+    @FindBy(xpath = "//*[@id='app']/div[1]/div[2]/div[2]/div/div/div[3]/div/div[1]/div/div[1]/div/label/span/i")
+    private WebElement selectAllJobsList;
 
     public AdminPages(WebDriver webDrivers){
         driver = webDrivers;
@@ -160,6 +167,76 @@ public class AdminPages {
         }
     }
 
+    public void clickTopTwoElements()throws InterruptedException {
+        // Menggunakan pola XPath umum dengan indeks
+        Thread.sleep(10000);
+        for (int i=1; i <= 2; i++) {
+            String xpath="//*[@id='app']/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div[" + i + "]/div/div[1]/div/div/label/span/i";
+            try {
+                WebElement element= driver.findElement(By.xpath(xpath));
+                element.click(); // Klik elemen berdasarkan XPath yang dihasilkan
+            } catch (NoSuchElementException e) {
+                System.out.println("Element not found: " + xpath);
+            }
+        }
+        Thread.sleep(10000); // Tunggu 10 detik setelah mengklik
+    }
+
+    public void clickAllElementsFromList()throws InterruptedException {
+        // Menggunakan pola XPath umum dengan indeks
+        Thread.sleep(10000);
+        selectAllJobsList.click(); // Klik elemen berdasarkan XPath yang dihasilkan
+        Thread.sleep(10000);
+    }
+
+
+    public void checkTopTwoElementsFromList()throws InterruptedException {
+        String[] xpaths = {
+                "//*[@id='app']/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div[1]/div/div[1]/div/div/label/span/i",
+                "//*[@id='app']/div[1]/div[2]/div[2]/div/div/div[3]/div/div[2]/div[2]/div/div[1]/div/div/label/span/i"
+        };
+
+
+        for (int i = 0; i < 2; i++) {
+            try {
+                WebElement checkboxElement= driver.findElement(By.xpath(xpaths[i] + "/ancestor::label/input")); // Menemukan elemen input checkbox
+                if (checkboxElement.isSelected()) {
+                    System.out.println("Checkbox at XPath is checked.");
+                }else {
+                    System.out.println("Checkbox at XPath is NOT checked.");
+                }
+            } catch (NoSuchElementException e) {
+                System.out.println("Element not found: " + xpaths[i]);
+            }
+        }
+        Thread.sleep(10000);
+    }
+
+    public void clickAndVerifyAllCheckboxes()throws InterruptedException {
+        Thread.sleep(10000);
+
+        List<WebElement> checkboxes = CheckboxJobTitles;
+        boolean allChecked = true;
+        for (WebElement checkbox : checkboxes) {
+            try {
+                WebElement parentCheckbox= checkbox.findElement(By.xpath("./ancestor::label/input"));
+                if (parentCheckbox.isSelected()) {
+                    System.out.println("Checkbox is checked.");
+                } else {
+                    System.out.println("Checkbox is NOT checked.");
+                    allChecked = false; // Menandai bahwa tidak semua checkbox sudah dicentang
+                }
+            } catch (Exception e) {
+                System.out.println("Error interacting with checkbox: " + e.getMessage());
+            }
+        }
+        if (allChecked) {
+            System.out.println("All checkboxes are successfully checked.");
+        } else {
+            System.out.println("Some checkboxes are not checked.");
+        }
+        Thread.sleep(10000); // Tunggu 10 detik setelah memverifikasi semua checkbox
+    }
 
 
 
@@ -180,7 +257,15 @@ public class AdminPages {
 
 
 
-    public void ClickHeaderJobPayGrades(){
+
+
+
+
+
+
+
+
+public void ClickHeaderJobPayGrades(){
         clickButtonHeaderByIndex(2);
         ClickListJob(2);
     }

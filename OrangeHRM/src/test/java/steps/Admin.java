@@ -37,6 +37,15 @@ public class Admin {
     public void user_click_delete_job_titles() throws InterruptedException {
        adminPages.ClickDeleteJobTitle();
     }
+    @When("User Click Selected Job Title")
+    public void user_click_selected_job_title() throws InterruptedException {
+        adminPages.clickTopTwoElements();
+    }
+
+    @When("User Click Selected All Job Title")
+    public void user_click_selected_all_job_title() throws InterruptedException {
+        adminPages.clickAllElementsFromList();
+    }
 
     @And("Click Delete")
     public void click_delete() throws InterruptedException {
@@ -77,5 +86,16 @@ public class Admin {
     public void user_success_to_delete_job_title() throws InterruptedException {
         adminPages.SuccessDeleteJobTitles();
     }
+    @Then("Job Title Success To Select")
+    public void job_title_success_to_select_success_to_checkbox() throws InterruptedException {
+        adminPages.checkTopTwoElementsFromList();
+    }
+
+
+    @Then("All Job Title Success To Select")
+    public void all_job_title_success_to_select() throws InterruptedException {
+        adminPages.clickAndVerifyAllCheckboxes();
+    }
+
 
 }

@@ -7,7 +7,6 @@ Feature: Login Feature
     And User Click Login
     Then User Navigate To Homepage Menu
 
-
   Scenario Outline: User Login With Invalid Credential
     Given User In On Login Page
     When User Enters <username> and <password>

@@ -18,7 +18,6 @@ Feature: Admin Feature
       And User Click Save
       Then User Success To Add New Job Title
 
-
     Scenario: User Delete Job Title
       Given User In On Admin Page
       And User Click Job
@@ -26,5 +25,17 @@ Feature: Admin Feature
       And Click Delete
       Then User Success To Delete Job Title
 
+
+    Scenario: User Want To Select Few Job Titles
+      Given User In On Admin Page
+      And User Click Job
+      When User Click Selected Job Title
+      Then Job Title Success To Select
+
+  Scenario: User Want To Select All Job Titles
+    Given User In On Admin Page
+    And User Click Job
+    When User Click Selected All Job Title
+    Then All Job Title Success To Select
 
 
